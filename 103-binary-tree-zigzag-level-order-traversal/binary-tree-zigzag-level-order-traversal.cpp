@@ -46,10 +46,12 @@ public:
                 count--;    
 
             }
+
+            // or what else i can do is to reverse vector incase of even level before putting it to result vector instead of using deque.
                 
             
             level++;
-            res.push_back(vector<int> (vec.begin(),vec.end()));
+            res.push_back(vector<int> (vec.begin(),vec.end()));  //converting deque back to vector
 
         }  
         
