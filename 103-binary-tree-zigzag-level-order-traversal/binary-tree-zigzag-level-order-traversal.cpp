@@ -62,3 +62,55 @@ public:
         
     }
 };
+
+
+
+
+-------------------------------------- approach 2 -------------------------------------------------
+    class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        queue<TreeNode*> q;
+        if (root == NULL) return res;
+
+        q.push(root);
+
+        bool lefttoright = true;
+
+        while (!q.empty()) {
+            int count = q.size();
+            vector<int> vec;
+            
+
+            for(int i=0;i<count;i++){
+                TreeNode* temp = q.front();
+                q.pop();
+
+                i  = lefttoright ? i : count-i-1;
+                vec[i] = temp->val;
+            
+                if (temp->left != nullptr) {
+                    q.push(temp->left);
+                }
+
+                if (temp->right != nullptr) {
+                    q.push(temp->right);
+                }
+
+                count--;    
+
+            }
+            lefttoright != lefttoright;
+            res.push_back(vec); 
+
+        }  
+        
+
+        return res;
+        
+    
+        
+    }
+};
+
