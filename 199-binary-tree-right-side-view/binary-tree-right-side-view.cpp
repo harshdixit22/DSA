@@ -10,6 +10,41 @@
  * };
  */
 class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> result;
+        if (!root) return result;
+
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            int levelSize = q.size(); // Number of nodes at current level
+
+            for (int i = 0; i < levelSize; ++i) {
+                TreeNode* current = q.front();
+                q.pop();
+
+                // If it's the last node in the level, add to result
+                if (i == levelSize - 1) {
+                    result.push_back(current->val);
+                }
+
+                // Push left and right children to the queue
+                if (current->left) q.push(current->left);
+                if (current->right) q.push(current->right);
+            }
+        }
+
+        return result;
+    }
+};
+
+
+
+////---------------------------------------Reverse pre order traversal (NRL)-----------------------------
+
+class Solution {
     void solve(TreeNode* root , vector<int> &vec, unordered_set<TreeNode*> &st,int level){
 
         if(root == NULL){
@@ -37,3 +72,5 @@ public:
         
     }
 };
+
+
