@@ -58,3 +58,42 @@ public:
         
     }
 };
+
+
+------------------------------------- Follow-up:------------------------------------------------------
+
+//You may only use constant extra space.
+
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if (root == nullptr) return nullptr;
+
+        Node* head = root;
+
+        while (head != nullptr) {
+            Node* dummy = new Node(0);  // Dummy node for the next level
+            Node* temp = dummy;
+
+            while (head != nullptr) {
+                if (head->left != nullptr) {
+                    temp->next = head->left;
+                    temp = temp->next;
+                }
+
+                if (head->right != nullptr) {
+                    temp->next = head->right;
+                    temp = temp->next;
+                }
+
+                head = head->next;
+            }
+
+            head = dummy->next;  // Move to the next level
+            delete dummy;        // Free memory
+        }
+
+        return root;
+    }
+};
