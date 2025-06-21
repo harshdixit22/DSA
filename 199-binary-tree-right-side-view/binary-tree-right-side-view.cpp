@@ -10,42 +10,30 @@
  * };
  */
 class Solution {
+    void solve(TreeNode* root , vector<int> &vec, unordered_set<TreeNode*> &st,int level){
+
+        if(root == NULL){
+            return;
+        }
+        if(level == st.size()){
+            vec.push_back(root->val);
+            st.insert(root);
+        }
+
+        solve(root->right, vec , st,  level +1);
+
+        solve(root->left, vec , st,  level +1);
+
+    }
 public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> vec;
-        queue<TreeNode*> q;
-        if (root == nullptr) return vec;
+        unordered_set<TreeNode*> st;
 
-        q.push(root);
-
-        while (!q.empty()) {
-            int count = q.size();
-            
-
-            while (count!=0) {
-                TreeNode* temp = q.front();
-                q.pop();
-
-                if(count==1 && temp!=NULL){
-                    vec.push_back(temp->val);
-                }
-
-                
-
-                if (temp->left != nullptr) {
-                    q.push(temp->left);
-                }
-
-                if (temp->right != nullptr) {
-                    q.push(temp->right);
-                }
-                count--;
-            }
-
-            
-        }
+        solve(root,vec,st,0);
 
         return vec;
+        
         
     }
 };
