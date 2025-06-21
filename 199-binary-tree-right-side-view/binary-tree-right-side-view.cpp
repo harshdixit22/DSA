@@ -77,3 +77,52 @@ public:
 // --------------for left side view in recusrion just use preorder with same logic------------
 
 
+
+--------------------------------------TOP VIEW =---------------------------------------------------
+
+
+class Solution{
+    public:
+    vector<int> topView(TreeNode *root){
+        vector<int> vec;
+        map<int , int> mpp;
+        queue<pair<int,TreeNode*>> q;
+        q.push({0 , root});
+
+
+        while(!q.empty()){
+            auto  temp  = q.front();
+            q.pop();
+            int level = temp.first;
+            TreeNode* node = temp.second;
+
+
+            if(mpp.find(level) == mpp.end()){
+                mpp[level]=node->data;
+            }
+
+            if(root->left!=NULL){
+                q.push({level-1 , root->left});
+            }
+            if(root->right!=NULL){
+                q.push({level+1 , root->left});
+            }
+        }
+
+        for(auto it: mpp){
+            vec.push_back(it.second);
+        }
+
+        return vec;
+    }
+};
+
+
+----------------------------BOTTOM VIEW ------------------------------------------------------------
+    if(mpp.find(level) == mpp.end()){
+                mpp[level]=node->data;   
+            }
+
+/// just remove if condition then it will always overwrite.
+
+
