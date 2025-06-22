@@ -35,7 +35,7 @@ public:
             return 0;
         }
 
-        int z = solve(root, targetSum);
+        int z = solve(root, targetSum); 
         int x = pathSum(root->left, targetSum);
         int y = pathSum(root->right, targetSum);
 
