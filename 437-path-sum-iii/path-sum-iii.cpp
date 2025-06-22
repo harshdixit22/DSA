@@ -42,3 +42,35 @@ public:
         return x + y + z;
     }
 };
+
+
+---------------------------------------- INTUTIVE APPROACH -----------------------------------------
+    class Solution {
+public:
+    int count;
+
+    void solve(Node* root, int sum, int curr_sum) {
+        if (root == NULL) return;
+
+        curr_sum += root->key;
+
+        if (curr_sum == sum) {
+            count++;
+        }
+
+        solve(root->left, sum, curr_sum);
+        solve(root->right, sum, curr_sum);
+    }
+
+    int countPaths(Node* root, int sum) {
+        if (root == NULL) return 0;
+
+        // Reset count for each top-level call
+        count = 0;
+        solve(root, sum, 0); // Start a path from this node
+
+        // Also count paths starting from left and right subtrees
+        return count + countPaths(root->left, sum) + countPaths(root->right, sum);
+    }
+};
+
