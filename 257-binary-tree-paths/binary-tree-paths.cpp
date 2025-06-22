@@ -12,18 +12,24 @@
 class Solution {
 public:
     void dfs(TreeNode* node,vector<string> &res,string curr){
-        if(node == NULL) return;
-
-        if(node->left || node->right) curr = curr + to_string(node->val) + "->";
-        else{
-            curr = curr + to_string(node->val);
-            res.push_back(curr);
-
+        if(node==NULL){
             return;
         }
+
+
+        if(node->left ==NULL && node->right==NULL){
+            curr+=to_string(node->val);
+            res.push_back(curr);
+        }
+        else{
+            curr+=to_string(node->val) + "->";
+        }
+        dfs(node->left , res , curr);
+
+        dfs(node->right , res,  curr);
+
         
-        dfs(node->left, res, curr);
-        dfs(node->right, res, curr);
+        
     }
 
     vector<string> binaryTreePaths(TreeNode* root) {
