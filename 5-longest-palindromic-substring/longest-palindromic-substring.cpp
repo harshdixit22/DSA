@@ -72,7 +72,7 @@ public:
 
         // Check substrings of length >= 3
         for (int L = 3; L <= n; L++) {
-            for (int i = 0; i <= n - L; i++) {
+            for (int i = 0; i < n - L +1; i++) {
                 int j = i + L - 1;
                 if (s[i] == s[j] && t[i + 1][j - 1]) {
                     t[i][j] = true;
